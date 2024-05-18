@@ -26,7 +26,7 @@ spring:
             redis-rate-limiter:
               replenishRate: 10
               burstCapacity: 20
-              requestedTokens: 2
+              requestedTokens: 1
         - name: Retry
           args:
             retries: 3
@@ -53,6 +53,11 @@ spring:
     host: localhost
     port: 6379
     timeout: 1s
+  session:
+    store-type: redis
+    timeout: 10m
+    redis:
+      namespace: bookstore:edge
 
 # Resilience4j
 resilience4j:
