@@ -64,14 +64,14 @@ resilience4j:
   circuitbreaker:
     configs:
       default:
-        sliding-window-size: 20
-        permitted-number-of-calls-in-half-open-state: 5
-        failure-rate-threshold: 50
-        wait-duration-in-open-state: 15000
+        slidingWindowSize: 20
+        permittedNumberOfCallsInHalfOpenState: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 15000
   timelimiter:
     configs:
       default:
-        timeout-duration: 5s
+        timeoutDuration: 5s
 
 # Logging
 
