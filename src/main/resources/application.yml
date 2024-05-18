@@ -74,6 +74,10 @@ resilience4j:
         timeoutDuration: 5s
 
 # Logging
+logging:
+  level:
+    io.github.resilience4j: DEBUG
+
 
 # Info system
 info:
