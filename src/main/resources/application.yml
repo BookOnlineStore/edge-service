@@ -47,7 +47,7 @@ spring:
             - name: CircuitBreaker
               args:
                 name: catalogCircuitBreaker
-                fallBackUri: forward:/catalog-fallback
+                fallbackUri: forward:/catalog-fallback
   redis:
     connect-timeout: 2s
     host: localhost
