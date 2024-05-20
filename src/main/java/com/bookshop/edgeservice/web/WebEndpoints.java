@@ -18,6 +18,10 @@ public class WebEndpoints {
                         ServerResponse.ok().body(Mono.just("Catalog fallback"), String.class))
                 .POST("/catalog-fallback", request ->
                         ServerResponse.status(HttpStatus.SERVICE_UNAVAILABLE).build())
+                .GET("/order-fallback", request ->
+                        ServerResponse.ok().body(Mono.just("Order fallback"), String.class))
+                .POST("/order-fallback", request ->
+                        ServerResponse.status(HttpStatus.SERVICE_UNAVAILABLE).build())
                 .build();
     }
 
