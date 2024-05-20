@@ -13,6 +13,8 @@ spring:
     timeout-per-shutdown-phase: 15s
   cloud:
     gateway:
+      redis-rate-limiter:
+        include-headers: true
       httpclient:
         connect-timeout: 2000
         response-timeout: 5s
