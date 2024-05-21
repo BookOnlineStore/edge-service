@@ -60,6 +60,18 @@ spring:
               args:
                 name: orderCircuitBreaker
                 fallbackUri: forward:/order-fallback
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: edge-service
+            client-secret: bookstore-keycloak-secret
+            scope:
+              - openid
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/realms/BookOnlineStore
   redis:
     connect-timeout: 2s
     host: localhost
