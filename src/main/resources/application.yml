@@ -24,6 +24,7 @@ spring:
           max-life-time: 60s
       default-filters:
         - SaveSession
+        - TokenRelay
         - name: RequestRateLimiter
           args:
             redis-rate-limiter:
@@ -72,7 +73,7 @@ spring:
             client-id: edge-service
             client-secret: bookstore-keycloak-secret
             scope:
-              - openid
+              - openid,roles
         provider:
           keycloak:
             issuer-uri: http://localhost:8080/realms/BookOnlineStore
