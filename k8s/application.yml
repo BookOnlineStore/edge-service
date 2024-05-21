@@ -1,3 +1,9 @@
 spring:
   redis:
     host: bookstore-redis
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://bookstore-keycloak/realms/BookOnlineStore
