@@ -1,6 +1,7 @@
 package com.bookshop.edgeservice.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
@@ -20,7 +21,12 @@ public class SecurityConfig {
             ReactiveClientRegistrationRepository clientRegistrationRepository) {
         return http
                 .authorizeExchange(exchange -> exchange
-                        .anyExchange().authenticated())
+                        .pathMatchers("/", "/*.css", "/*.js", "favicon.ico")
+                        .permitAll()
+                        .pathMatchers(HttpMethod.GET, "/books/**")
+                        .permitAll()
+                        .anyExchange().authenticated()
+                )
                 .exceptionHandling(exceptionHandling ->
                         exceptionHandling.authenticationEntryPoint(
                                 new HttpStatusServerEntryPoint(HttpStatus.UNAUTHORIZED)
