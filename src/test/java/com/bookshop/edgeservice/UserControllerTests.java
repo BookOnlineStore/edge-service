@@ -3,7 +3,6 @@ package com.bookshop.edgeservice;
 import com.bookshop.edgeservice.config.SecurityConfig;
 import com.bookshop.edgeservice.user.User;
 import com.bookshop.edgeservice.user.UserController;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
@@ -60,6 +59,7 @@ public class UserControllerTests {
                         .claim(StandardClaimNames.PREFERRED_USERNAME, expectedUser.username())
                         .claim(StandardClaimNames.GIVEN_NAME, expectedUser.firstName())
                         .claim(StandardClaimNames.FAMILY_NAME, expectedUser.lastName())
+                        .claim("roles", expectedUser.roles())
                 );
     }
 
