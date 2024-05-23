@@ -43,10 +43,6 @@ spring:
               factor: 2
               basedOnPreviousValue: false
       routes:
-        - id: spa-route
-          uri: ${SPA_URL:http://localhost:9004}
-          predicates:
-            - Path=/,/*.css,/*.js,/favicon.ico
         - id: catalog-route
           uri: ${CATALOG_SERVICE_URL:http://localhost:9001}/books
           predicates:
@@ -103,12 +99,12 @@ resilience4j:
 
 # Logging
 logging:
+  pattern:
+    level: "%5p [${spring.application.name}, %X{trace_id},%X{span_id}]"
   group:
     circuitbreaker: io.github.resilience4j, org.springframework.cloud.circuitbreaker
   level:
     circuitbreaker: DEBUG
-
-
 
 # Info system
 info:
@@ -119,7 +115,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, info
+        include: info, health, env, flyway, loggers, mappings, prometheus
   endpoint:
     health:
       show-details: always
@@ -131,8 +127,6 @@ management:
           include:
             - readinessState
             - redis
-    metrics:
-
   info:
     env:
       enabled: true
@@ -140,4 +134,6 @@ management:
       enabled: true
     os:
       enabled: true
-
+  metrics:
+    tags:
+      application: ${spring.application.name}
