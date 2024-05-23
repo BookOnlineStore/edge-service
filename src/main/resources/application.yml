@@ -72,8 +72,7 @@ spring:
           keycloak:
             client-id: edge-service
             client-secret: bookstore-keycloak-secret
-            scope:
-              - openid,roles
+            scope: openid,roles
         provider:
           keycloak:
             issuer-uri: http://localhost:8080/realms/BookOnlineStore
@@ -132,6 +131,8 @@ management:
           include:
             - readinessState
             - redis
+    metrics:
+
   info:
     env:
       enabled: true
