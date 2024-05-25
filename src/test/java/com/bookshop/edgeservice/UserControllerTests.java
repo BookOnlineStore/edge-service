@@ -33,7 +33,7 @@ public class UserControllerTests {
                 .get()
                 .uri("/user")
                 .exchange()
-                .expectStatus().isUnauthorized();
+                .expectStatus().is3xxRedirection();
     }
 
     @Test
