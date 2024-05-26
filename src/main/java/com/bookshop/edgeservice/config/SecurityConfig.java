@@ -33,6 +33,8 @@ public class SecurityConfig {
                         .pathMatchers(HttpMethod.GET, "/books/**").permitAll()
                         .anyExchange().authenticated()
                 )
+                .exceptionHandling(exceptionHandling -> exceptionHandling
+                        .authenticationEntryPoint(new HttpStatusServerEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .oauth2Login(Customizer.withDefaults())
                 .logout(logout -> logout.logoutSuccessHandler(
                         oidcLogoutSuccessHandler(clientRegistrationRepository)
