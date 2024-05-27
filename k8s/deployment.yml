@@ -30,7 +30,7 @@ spec:
             - name: ORDER_SERVICE_URL
               value: http://order-service
             - name: SPA_URL
-              value: http://polar-ui
+              value: http://bookstore-ui
           livenessProbe:
             httpGet:
               port: 9000
