@@ -71,7 +71,7 @@ spring:
         registration:
           keycloak:
             client-id: edge-service
-            client-secret: bookstore-keycloak-secret
+            client-secret: U3TeCL3Udf6mokeSUsFrAVQgwrbpHzR5
             scope: openid,roles
         provider:
           keycloak:
