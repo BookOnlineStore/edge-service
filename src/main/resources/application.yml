@@ -71,8 +71,8 @@ spring:
         registration:
           keycloak:
             client-id: edge-service
-            client-secret: U3TeCL3Udf6mokeSUsFrAVQgwrbpHzR5
-            scope: openid,roles
+            client-secret: xtoyS4mnTNjd1lRzzMQ5Ik3UCj9MvGKw
+            scope: openid,roles,profile
         provider:
           keycloak:
             issuer-uri: http://localhost:8080/realms/BookOnlineStore
