@@ -3,7 +3,7 @@ on: push
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: bookonlinestore/edge-service
+  IMAGE_NAME: thainguyencoffee-bookstore/edge-service
   VERSION: latest
 
 jobs:

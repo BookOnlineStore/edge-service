@@ -6,4 +6,4 @@ spring:
       client:
         provider:
           keycloak:
-            issuer-uri: http://bookstore-keycloak/realms/BookOnlineStore
+            issuer-uri: http://bookstore-keycloak/realms/bookstore

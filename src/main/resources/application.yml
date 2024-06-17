@@ -71,11 +71,11 @@ spring:
         registration:
           keycloak:
             client-id: edge-service
-            client-secret: xtoyS4mnTNjd1lRzzMQ5Ik3UCj9MvGKw
+            client-secret: cT5pq7W3XStcuFVQMhjPbRj57Iqxcu4n
             scope: openid,roles,profile
         provider:
           keycloak:
-            issuer-uri: http://localhost:8080/realms/BookOnlineStore
+            issuer-uri: http://localhost:8080/realms/bookstore
   redis:
     connect-timeout: 2s
     host: localhost
