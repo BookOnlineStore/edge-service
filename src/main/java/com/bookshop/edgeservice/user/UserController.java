@@ -20,8 +20,7 @@ public class UserController {
             oidcUser.getBirthdate(),
             oidcUser.getEmail(),
             oidcUser.getEmailVerified(),
-            oidcUser.getClaimAsString("job"),
-            oidcUser.getClaimAsBoolean("isAuthor"),
+            oidcUser.getClaimAsStringList("pictures"),
             oidcUser.getClaimAsStringList("roles")
         );
         return Mono.just(user);

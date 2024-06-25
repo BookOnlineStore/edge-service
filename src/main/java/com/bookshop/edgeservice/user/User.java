@@ -10,8 +10,7 @@ public record User (
         String birthdate,
         String email,
         Boolean emailVerified,
-        String job,
-        Boolean isAuthor,
+        List<String> pictures,
         List<String> roles
 ) {
 }
