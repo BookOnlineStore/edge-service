@@ -1,6 +1,7 @@
 package com.bookshop.edgeservice.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
@@ -21,6 +22,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.Arrays;
 
+@Configuration
 @EnableWebFluxSecurity
 public class SecurityConfig {
 
