@@ -45,8 +45,7 @@ public class UserControllerTests {
                 "2004-03-11",
                 "nguyennt11032004@gmail.com",
                 true,
-                "student",
-                true,
+                null,
                 List.of("employee", "customer"));
 
         webTestClient
@@ -71,8 +70,6 @@ public class UserControllerTests {
                 .claim(StandardClaimNames.BIRTHDATE, expectedUser.birthdate())
                 .claim(StandardClaimNames.EMAIL, expectedUser.email())
                 .claim(StandardClaimNames.EMAIL_VERIFIED, expectedUser.emailVerified())
-                .claim("job", expectedUser.job())
-                .claim("isAuthor", expectedUser.isAuthor())
                 .claim("roles", expectedUser.roles())
                 );
     }
