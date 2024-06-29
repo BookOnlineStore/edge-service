@@ -29,7 +29,7 @@ spring:
           args:
             redis-rate-limiter:
               replenishRate: 10
-              burstCapacity: 20
+              burstCapacity: 40
               requestedTokens: 1
         - name: Retry
           args:
@@ -44,9 +44,9 @@ spring:
               basedOnPreviousValue: false
       routes:
         - id: spa-route
-          uri: ${SPA_URL:http://localhost:9004}
+          uri: ${SPA_URL:http://localhost:4200}
           predicates:
-            - Path=/, /assets/*.css, /assets/*.js, /assets/*.svg, /index.html, /vite.svg
+            - Path=/, /@fs/**, /@vite/client, /*.css, /*.js, /favicon.ico
         - id: catalog-route
           uri: ${CATALOG_SERVICE_URL:http://localhost:9001}/books
           predicates:
@@ -106,8 +106,11 @@ logging:
     level: "%5p [${spring.application.name}, %X{trace_id},%X{span_id}]"
   group:
     circuitbreaker: io.github.resilience4j, org.springframework.cloud.circuitbreaker
+    cloud-gateway: org.springframework.cloud.gateway
   level:
-    circuitbreaker: DEBUG
+    circuitbreaker: INFO
+    cloud-gateway: INFO
+    security: INFO
 
 # Info system
 info:
@@ -118,7 +121,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: info, health, env, flyway, loggers, mappings, prometheus
+        include: info, health, env, flyway, loggers, mappings, prometheus, gateway
   endpoint:
     health:
       show-details: always
@@ -130,6 +133,7 @@ management:
           include:
             - readinessState
             - redis
+    gateway.enabled: true
   info:
     env:
       enabled: true
