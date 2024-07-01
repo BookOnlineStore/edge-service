@@ -18,8 +18,6 @@ import org.springframework.security.web.server.authentication.HttpStatusServerEn
 import org.springframework.security.web.server.authentication.logout.ServerLogoutSuccessHandler;
 import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository;
 import org.springframework.security.web.server.csrf.CsrfToken;
-import org.springframework.security.web.server.csrf.ServerCsrfTokenRequestHandler;
-import org.springframework.security.web.server.csrf.XorServerCsrfTokenRequestAttributeHandler;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.reactive.CorsConfigurationSource;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
@@ -36,9 +34,6 @@ public class SecurityConfig {
     SecurityWebFilterChain securityWebFilterChain(
             ServerHttpSecurity http,
             ReactiveClientRegistrationRepository clientRegistrationRepository) {
-        CookieServerCsrfTokenRepository tokenRepository = CookieServerCsrfTokenRepository.withHttpOnlyFalse();
-        XorServerCsrfTokenRequestAttributeHandler delegate = new XorServerCsrfTokenRequestAttributeHandler();
-        ServerCsrfTokenRequestHandler requestHandler = delegate::handle;
         return http
                 .authorizeExchange(exchange -> exchange
                         .pathMatchers("/actuator/**").permitAll()
@@ -48,10 +43,7 @@ public class SecurityConfig {
                 .exceptionHandling(exceptionHandling -> exceptionHandling
                         .authenticationEntryPoint(new HttpStatusServerEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .oauth2Login(Customizer.withDefaults())
-                .csrf((csrf) -> csrf
-                        .csrfTokenRepository(tokenRepository)
-                        .csrfTokenRequestHandler(requestHandler)
-                )
+                .csrf((csrf) -> csrf.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
                 .logout(logout -> logout.logoutSuccessHandler(oidcLogoutSuccessHandler(clientRegistrationRepository)))
                 .build();
     }
@@ -80,6 +72,7 @@ public class SecurityConfig {
         };
     }
 
+    // For development
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
     CorsConfigurationSource corsConfigurationSource() {
