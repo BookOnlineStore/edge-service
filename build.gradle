@@ -1,8 +1,7 @@
 plugins {
+    id 'org.springframework.boot' version '2.7.18'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
     id 'java'
-    id 'org.springframework.boot' version '3.0.13'
-    id 'io.spring.dependency-management' version '1.1.5'
-    id("org.openrewrite.rewrite") version("6.16.1")
 }
 
 group = 'com.bookshop'
@@ -12,14 +11,16 @@ java {
     sourceCompatibility = '17'
 }
 
+description = 'Provides API gateway and cross-cutting concerns.'
+
 repositories {
     mavenCentral()
 }
 
 ext {
-    set('springCloudVersion', "2022.0.3")
+    set('springCloudVersion', "2021.0.9")
     set('testcontainersVersion', "1.19.3")
-    set('otelVersion', "1.32.0")
+    set('otelVersion', "1.33.3")
 }
 
 dependencies {
@@ -30,7 +31,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-redis-reactive'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 
-    rewrite("org.openrewrite.recipe:rewrite-spring:5.13.2")
 
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
     runtimeOnly 'io.github.resilience4j:resilience4j-micrometer'
@@ -48,10 +48,6 @@ dependencyManagement {
     }
 }
 
-
-rewrite {
-    activeRecipe("org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_0")
-}
 
 bootBuildImage {
     builder = "docker.io/paketobuildpacks/builder-jammy-base"
